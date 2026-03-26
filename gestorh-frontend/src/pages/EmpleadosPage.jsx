@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import api from "../services/api";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
+import Sidebar from "../components/sidebar.jsx";
+import Topbar from "../components/Topbar.jsx";
 import EmpleadoModal from "../components/EmpleadoModal";
 import { getSession } from "../services/api";
 import {
@@ -11,7 +11,7 @@ import {
     Calendar, Phone, Mail, Award, TrendingUp, RefreshCw, CheckCircle,
     XCircle, Activity, Star
 } from "lucide-react";
-import "../styles/Empleados.css";
+import "../styles/empleados.css";
 
 export default function EmpleadosPage() {
     const [empleados, setEmpleados] = useState([]);

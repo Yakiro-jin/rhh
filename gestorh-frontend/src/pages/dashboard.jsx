@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import api, { getSession } from "../services/api";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
+import sidebar from "../components/sidebar.jsx";
+import Topbar from "../components/Topbar.jsx";
 import {
     Users, ClipboardCheck, GraduationCap, AlertTriangle,
     TrendingUp, Calendar, Target, BarChart3,
     TrendingDown, Award, Clock, Percent, ChevronRight,
     CheckCircle, XCircle, UserCheck, FileText
 } from "lucide-react";
-import "../styles/Dashboard.css";
+import "../styles/dashboard.css";
 
 // Componente de tarjeta de métrica mejorado
 const StatCard = ({ title, value, icon: Icon, color, trend, subtitle, loading }) => {

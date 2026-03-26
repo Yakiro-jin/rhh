@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import api, { getSession } from "../services/api";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
+import Sidebar from "../components/sidebar.jsx";
+import Topbar from "../components/Topbar.jsx";
 import DepartamentoModal from "../components/DepartamentoModal";
 import {
     Building2, Plus, Search, Filter, Users,
