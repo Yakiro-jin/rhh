@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/login";
-import Dashboard from "./pages/dashboard";
-import PrivateRoute from "./routes/PrivateRoute";
-import RequireRole from "./routes/RequireRole";
-import EmpleadosPage from "./pages/EmpleadosPage";
-import UsuariosPage from "./pages/UsuariosPage";
-import DepartamentosPage from "./pages/DepartamentosPage";
+import Login from "./pages/login.jsx";
+import Dashboard from "./pages/dashboard.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
+import RequireRole from "./routes/RequireRole.jsx";
+import EmpleadosPage from "./pages/EmpleadosPage.jsx";
+import UsuariosPage from "./pages/UsuariosPage.jsx";
+import DepartamentosPage from "./pages/DepartamentosPage.jsx";
 import { getSession } from "./services/api";
 
 export default function App() {
