@@ -1,0 +1,61 @@
+/* Colores de tu paleta integrados */
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.role-badge.admin {
+    background-color: var(--melocoton);
+    color: #854d0e;
+}
+
+.role-badge.supervisor {
+    background-color: var(--mint);
+    color: var(--turquesa);
+}
+
+.id-tag {
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: var(--gris);
+    font-family: monospace;
+}
+
+.filter-select {
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--mint);
+    color: var(--gris);
+    outline: none;
+    cursor: pointer;
+    background: white;
+}
+
+.icon-circle {
+    width: 32px;
+    height: 32px;
+    background: var(--mint);
+    color: var(--turquesa);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal especifico */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.modal-header h2 {
+    color: var(--naranja);
+}

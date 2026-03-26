@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./gestorh-backend
+    container_name: gestorh-backend
+    ports:
+      - "5005:5000"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - N8N_API_URL=${N8N_API_URL}
+    restart: always
+
+  frontend:
+    build: ./gestorh-frontend
+    container_name: gestorh-frontend
+    ports:
+      - "3005:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5005
+    depends_on:
+      - backend
+    restart: always
+
+  n8n:
+    image: n8nio/n8n
+    container_name: gestorh-n8n
+    restart: always
+    ports:
+      - "5679:5678"
+    volumes:
+      - ./n8n_data:/home/node/.n8n
