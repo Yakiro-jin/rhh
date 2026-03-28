@@ -7,8 +7,20 @@ from app.routes.cargo import cargo_bp
 from app.routes.auth import auth_bp
 from app.routes.departamento import departamento_bp
 
+from dotenv import load_dotenv
+import os
+
+# 1. Cargamos las variables globales
+load_dotenv()
+
 # Inicialización de la aplicación Flask
 app = Flask(__name__)
+
+# Manejador de errores global para debugging en Portainer
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # En producción sería mejor no devolver el error completo, pero para debug es necesario
+    return jsonify({"error": str(e), "type": str(type(e).__name__)}), 500
 
 # Configuración explícita de CORS para manejar peticiones preflight (OPTIONS)
 CORS(app, resources={r"/*": {
