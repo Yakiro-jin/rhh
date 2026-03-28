@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 import os
 from dotenv import load_dotenv
 
@@ -14,3 +15,6 @@ def connect():
         password=os.getenv('DB_PASSWORD'),
         database=os.getenv('DB_NAME')
     )
+
+def get_dict_cursor(conn):
+    return conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)

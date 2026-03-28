@@ -3,7 +3,7 @@ import requests
 from flask import Blueprint, request, jsonify
 from dotenv import load_dotenv
 import app.services.auth as servicio
-from app.database_connector import connect
+from app.database_connector import connect, get_dict_cursor
 
 # Cargamos las variables del .env
 load_dotenv()
@@ -35,7 +35,7 @@ def verificar_empleado(cedula):
     Evita errores humanos al tipear la cédula.
     """
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     
     query = """
         SELECT e.id, e.nombre, e.apellido, d.nombre as departamento
@@ -99,7 +99,7 @@ def listar_usuarios():
         return jsonify({"error": "Acceso restringido"}), 403
 
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     
     # JOIN para mostrar nombres reales en lugar de solo IDs
     query = """

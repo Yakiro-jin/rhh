@@ -1,4 +1,4 @@
-from app.database_connector import connect
+from app.database_connector import connect, get_dict_cursor
 from app.models.empleado import Empleado
 from datetime import datetime, date
 
@@ -14,7 +14,7 @@ def validar_campos_obligatorios(datos):
 
 def validar_unicos(cedula, email_personal, empleado_id=None):
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     
     # Validar Cédula
     cursor.execute("SELECT id FROM empleados WHERE cedula = %s AND id != %s", (cedula, empleado_id or -1))
@@ -35,7 +35,7 @@ def validar_unicos(cedula, email_personal, empleado_id=None):
 
 def validar_existencia_entidades(departamento_id, cargo_id):
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
 
     # Validar Departamento
     cursor.execute("SELECT id FROM departamentos WHERE id = %s", (departamento_id,))
@@ -121,7 +121,7 @@ def registrar_empleado(datos):
 # -----------------------------
 def listar_empleados():
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     
     # Hacemos un JOIN para traer los nombres de departamento y cargo en lugar de solo IDs
     query = """

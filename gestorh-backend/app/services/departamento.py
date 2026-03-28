@@ -1,4 +1,4 @@
-from app.database_connector import connect
+from app.database_connector import connect, get_dict_cursor
 from app.models.departamento import Departamento
 
 # ---------------------------------------------------------
@@ -10,7 +10,7 @@ def registrar_departamento(datos):
     """
     try:
         conn = connect()
-        cursor = conn.cursor(dictionary=True)
+        cursor = get_dict_cursor(conn)
         
         # Validamos si ya existe por nombre (el nombre es UNIQUE en SQL)
         cursor.execute("SELECT id FROM departamentos WHERE nombre = %s", (datos['nombre'],))
@@ -40,7 +40,7 @@ def listar_departamentos():
     """
     try:
         conn = connect()
-        cursor = conn.cursor(dictionary=True)
+        cursor = get_dict_cursor(conn)
         
         # Opcional: Podrías contar cuántos empleados tiene cada depto con un JOIN
         cursor.execute("SELECT * FROM departamentos ORDER BY nombre ASC")

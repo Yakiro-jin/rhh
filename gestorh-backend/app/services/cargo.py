@@ -1,4 +1,4 @@
-from app.database_connector import connect
+from app.database_connector import connect, get_dict_cursor
 from app.models.cargo import Cargo  # Importamos tu clase original
 
 class CargoService:
@@ -28,7 +28,7 @@ class CargoService:
 
             # 4. Conexión y persistencia
             conn = connect()
-            cursor = conn.cursor(dictionary=True)
+            cursor = get_dict_cursor(conn)
 
             # Verificación de duplicados antes de insertar
             cursor.execute(

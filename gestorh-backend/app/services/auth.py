@@ -3,7 +3,7 @@ import jwt
 import os
 from datetime import datetime, timedelta
 from flask import request
-from app.database_connector import connect
+from app.database_connector import connect, get_dict_cursor
 
 SECRET_KEY = os.getenv("SECRET_KEY", "clave_super_segura_sunsol")
 
@@ -22,14 +22,14 @@ def generar_token(empleado_id, rol, departamento_id):
 # ---------------------------------------------------------
 def login_service(email, password):
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     try:
         # Usamos LEFT JOIN para que no explote si el empleado no está bien configurado
         query = """
             SELECT u.*, e.departamento_id, e.nombre, e.apellido 
             FROM usuarios u
             LEFT JOIN empleados e ON u.empleado_id = e.id
-            WHERE u.email = %s AND u.activo = 1
+            WHERE u.email = %s AND u.activo = TRUE
         """
         cursor.execute(query, (email,))
         user = cursor.fetchone()
@@ -67,7 +67,7 @@ def login_service(email, password):
 # ---------------------------------------------------------
 def crear_usuario(datos):
     conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    cursor = get_dict_cursor(conn)
     try:
         # 1. Buscar empleado por cédula
         cursor.execute("SELECT id FROM empleados WHERE cedula = %s", (datos.get('cedula'),))
@@ -89,7 +89,7 @@ def crear_usuario(datos):
         # 4. Insertar
         query = """
             INSERT INTO usuarios (username, password, email, rol, empleado_id, activo) 
-            VALUES (%s, %s, %s, %s, %s, 1)
+            VALUES (%s, %s, %s, %s, %s, TRUE)
         """
         cursor.execute(query, (
             datos['username'],
