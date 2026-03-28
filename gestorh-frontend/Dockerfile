@@ -1,5 +1,5 @@
-# Usamos una imagen basada en Debian (bullseye) para máxima compatibilidad
-FROM node:18-bullseye-slim
+# Usamos Node 20 (LTS) en lugar de 18 para mejor compatibilidad con librerías modernas
+FROM node:20-bullseye-slim
 
 # Directorio de trabajo
 WORKDIR /app

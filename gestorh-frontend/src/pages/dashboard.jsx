@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api, { getSession } from "../services/api";
-import sidebar from "../components/sidebar.jsx";
+import Sidebar from "../components/sidebar.jsx";
 import Topbar from "../components/Topbar.jsx";
 import {
     Users, ClipboardCheck, GraduationCap, AlertTriangle,
