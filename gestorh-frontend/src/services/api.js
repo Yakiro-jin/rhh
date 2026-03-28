@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || `${window.location.protocol}//${window.location.hostname}:5005`,
+    baseURL: process.env.REACT_APP_API_URL || (window.location.hostname.includes("zrok.io") ? "" : `${window.location.protocol}//${window.location.hostname}:5005`),
     headers: {
         "Content-Type": "application/json",
     },
